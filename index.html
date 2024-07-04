@@ -54,6 +54,49 @@
             font-size: 14px;
             border-radius: 5px;
         }
+        .custom-button{
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            padding-bottom: 4px;
+            transform: translateX(-50%);
+            background-color:transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 25px;
+            border-radius: 50%; /* Makes the button round */
+            width: 100%; /* Width of the button */
+            height: 100%; /* Height of the button */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .link{
+            position: absolute;
+            bottom: 5px;
+            left: 10px;
+            color: #414141;
+            border: none;
+            cursor: pointer;
+            font-size: 22px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .welcome-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #ddd;
+            padding: 40px;
+            border-radius: 10px;
+            z-index: 1;
+            font-size: 50px;
+            text-align: center;
+            display: none; /* Hidden by default */
+        }
     </style>
 </head>
 <body>
@@ -61,11 +104,17 @@
         <video autoplay muted loop>
             <source src="https://kappa.lol/OzeWD" type="video/mp4">
         </video>
-        <audio  id="audio-player" autoplay controls loop><source src="https://kappa.lol/DLIdC" type="audio/mp3"></audio>
+        <audio id="audio-player"  loop><source src="https://kappa.lol/0H7hC" type="audio/mp3"></audio>
+        <button class="custom-button" id="custom-button" onclick="playPause('audio-player')"></button>
+        <div>
+            <a target="_blank" class="link "href="https://7tv.app/emotes/66803ed2a3a3e500d5d3d60b">7TV emote</a>
+        </div>
+        <div class="welcome-text" id="welcomeText">BIBIBIBIBITURBO<br>klikni kdekoliv pro přehrání<br>dalším kliknutím hudbu zastavíš</div>
         <input class="fullscreen-button" onclick="toggleFullscreen()" type="image" src="https://cdn-icons-png.freepik.com/512/8373/8373465.png" />
     </main>
     <script>
         const audioPlayer = document.getElementById('audio-player');
+        const audioButton = document.getElementById('custom-button');
         function toggleFullscreen() {
             if (!document.fullscreenElement) {
                 document.documentElement.requestFullscreen();
@@ -75,16 +124,47 @@
         }
         document.addEventListener('fullscreenchange', () => {
             if (document.fullscreenElement) {
-                audioPlayer.style.display = 'none';
+                audioButton.style.display = 'none';
             } else {
-                audioPlayer.style.display = 'block';
+                audioButton.style.display = 'block';
             }
         });
         function setAudioVolume() {
             audioPlayer.volume = 0.2;
-            audioPlayer.play();
         }
+
+        function hideWelcomeText() {
+            welcomeText.style.display = 'none';
+        }
+        document.addEventListener('click', hideWelcomeText); // Hide text on any click
+
         window.addEventListener('load', setAudioVolume);
+        window.addEventListener('load', welcomeText.style.display = 'block');
+        
+//Plays the song. Just pass the id of the audio element.
+function play(id){
+  //Sets the active song to the song being played. All other functions depend on this.
+  activeSong = document.getElementById(id);
+  //Plays the song defined in the audio tag.
+  activeSong.play();
+
+}
+function pause(){
+  activeSong.pause();
+  
+}
+function playPause(id){
+
+//Sets the active song since one of the functions could be play.
+activeSong = document.getElementById(id);
+
+//Checks to see if the song is paused, if it is, play it from where it left off otherwise pause it.
+if (activeSong.paused){
+  activeSong.play();
+}else{
+  activeSong.pause();
+}
+}
     </script>
 </body>
 </html>
