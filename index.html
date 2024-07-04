@@ -1,1 +1,38 @@
-<h1>BIBIBIBIBITURBO</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BIBIBIBIBITURBO</title>
+</head>
+<style>
+    ::-webkit-scrollbar {
+    display: none;
+    }
+    body {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+    font-family: Arial, sans-serif;
+    background-color: #222222;
+    color: #ddd;
+    margin: 10px;
+    }
+</style>
+<body>
+    <main>
+        <video autoplay muted loop>
+            <source height="100vh"src="https://kappa.lol/OzeWD" type="video/mp4">
+        </video>
+        <audio autoplay loop id="myadio">
+            <source src="https://kappa.lol/DLIdC" type="audio/mpeg">
+        </audio>
+    </main>
+</body>
+<script>
+    const obj = document.createElement("audio");
+    console.log(obj.volume); // 1
+    obj.volume = 0.2;
+</script>
+</html>
